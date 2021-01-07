@@ -1218,6 +1218,9 @@ module Term : sig
     include Dolmen_intf.Term.Smtlib_Real with type t := t
     (** Satisfy the required interface for the typing of smtlib's reals *)
 
+    val floor_to_int : t -> t
+    (** Greatest integer smaller than the given real *)
+
     include Dolmen_intf.Term.Tptp_Tff_Arith_Common with type t := t
     (** Satisfy the common interface for TPTP's arithmetic over reals *)
 
