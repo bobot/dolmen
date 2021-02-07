@@ -127,9 +127,12 @@ type _ t +=
 
 type _ t +=
   | Tester :
-      { cstr : 'term_cst; } ->
-      < term_cst : 'term_cst ; .. > t
-  (** [Tester { cstr; }] is the tester for constructor [cstr]. *)
+      { adt: 'ty_cst;
+        cstr : 'term_cst;
+        case: int; } ->
+      < ty_cst : 'ty_cst ; term_cst : 'term_cst; .. > t
+  (** [Tester { adt; cstr; case; }] is the tester of the case-th constructor
+     of type [adt] which should be [cstr]. *)
   | Constructor :
       { adt : 'ty_cst; case : int; } ->
       < ty_cst : 'ty_cst ; .. > t
@@ -138,7 +141,7 @@ type _ t +=
   | Destructor :
       { adt : 'ty_cst; cstr : 'term_cst; case : int; field: int; } ->
       < ty_cst : 'ty_cst ; term_cst : 'term_cst; .. > t
-  (** [Destructor { adt; cstr; case; field; }] is the destructor retuning the
+  (** [Destructor { adt; cstr; case; field; }] is the destructor returning the
       field-th argument of the case-th constructor of type [adt] which should
       be [cstr]. *)
 
